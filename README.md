@@ -1,2 +1,2 @@
 live link for the deployed website:-
-https://click-pe-assignment.vercel.app/login
+https://click-pe-assignment.vercel.app
