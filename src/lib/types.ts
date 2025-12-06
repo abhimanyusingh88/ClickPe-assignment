@@ -12,7 +12,7 @@ export const ProductSchema = z.object({
   tenure_max_months: z.number().default(60),
   processing_fee_pct: z.number().default(0),
   
-  // --- ADDED THESE MISSING FIELDS ---
+  
   prepayment_allowed: z.boolean().default(true),
   disbursal_speed: z.string().default('standard'),
   docs_level: z.string().default('standard'),
@@ -22,10 +22,10 @@ export const ProductSchema = z.object({
   terms: z.record(z.string(), z.any()).optional().default({}), 
 });
 
-// --- 2. TypeScript Types (Inferred from Zod) ---
+
 export type Product = z.infer<typeof ProductSchema>;
 
-// --- 3. Chat API Types ---
+
 export const ChatRequestSchema = z.object({
   productId: z.string().uuid(),
   message: z.string().min(1, "Message cannot be empty"),

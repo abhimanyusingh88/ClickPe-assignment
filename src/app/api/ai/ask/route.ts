@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     }
 
     // GROQ Init
-    const apiKey = process.env.GROQ_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY?.trim();
 
     if (!apiKey) {
       return NextResponse.json(
@@ -65,9 +65,8 @@ RULES:
 3. Use simple, clear, friendly language.
 `;
 
-    
     const completion = await groq.chat.completions.create({
-      model: "llama-3.3-70b-versatile", // working hai 
+      model: "llama-3.3-70b-versatile",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: message },
