@@ -12,6 +12,7 @@ export default function ChatInputBar({
 }: any) {
   return (
     <div className="p-4 border-t bg-slate-50">
+      
       {isListening && (
         <div className="mb-2 text-xs text-red-500 flex justify-center animate-pulse">
           Listening... Speak now
@@ -23,14 +24,20 @@ export default function ChatInputBar({
           e.preventDefault();
           handleSend();
         }}
-        className="flex gap-2"
+        className="
+          flex 
+          gap-2 
+          items-center 
+          flex-wrap
+          sm:flex-nowrap
+        "
       >
         <Button
           type="button"
           variant={isListening ? "destructive" : "outline"}
           size="icon"
           onClick={toggleListening}
-          className={isListening ? "animate-pulse" : ""}
+          className={`${isListening ? "animate-pulse" : ""} shrink-0`}
         >
           {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
         </Button>
@@ -40,10 +47,18 @@ export default function ChatInputBar({
           onChange={(e) => setInput(e.target.value)}
           placeholder={isListening ? "Listening..." : "Type or speak..."}
           disabled={isLoading}
-          className="flex-1"
+          className="
+            flex-1 
+            min-w-[200px] 
+            sm:min-w-0
+          "
         />
 
-        <Button type="submit" disabled={isLoading || !input.trim()}>
+        <Button
+          type="submit"
+          disabled={isLoading || !input.trim()}
+          className="shrink-0"
+        >
           <Send className="w-4 h-4" />
         </Button>
       </form>

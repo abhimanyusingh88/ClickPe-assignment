@@ -12,16 +12,16 @@ export default function ChatHeader({
   isSpeaking
 }: any) {
   return (
-    <div className="p-4 border-b bg-slate-50 flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <Bot className={`w-6 h-6 ${isSpeaking ? "text-green-500 animate-pulse" : "text-primary"}`} />
-        <div>
-          <div className="font-bold text-base">{product.name} Assistant</div>
+    <div className="p-4 border-b bg-slate-50 flex items-center justify-between w-full flex-wrap gap-3">
+      <div className="flex items-center gap-2 min-w-0">
+        <Bot className={`w-6 h-6 flex-shrink-0 ${isSpeaking ? "text-green-500 animate-pulse" : "text-primary"}`} />
+        <div className="min-w-0">
+          <div className="font-bold text-base break-words">{product.name} Assistant</div>
           <Badge variant="secondary" className="text-xs mt-1">{product.bank}</Badge>
         </div>
       </div>
 
-      <div className="flex gap-1">
+      <div className="flex gap-1 shrink-0">
         <Button
           variant="ghost"
           size="icon"

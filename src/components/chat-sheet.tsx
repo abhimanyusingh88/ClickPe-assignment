@@ -129,14 +129,13 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
     >
       <SheetTrigger asChild>{trigger}</SheetTrigger>
 
-      <SheetContent className="w-full sm:w-[540px] flex flex-col p-0 h-[100vh] bg-white z-[50]">
+      {/* ★ Updated for full mobile responsiveness */}
+      <SheetContent className="w-full sm:w-[540px] flex flex-col p-0 h-[100vh] max-h-[100dvh] bg-white z-[50] overflow-hidden">
 
-        {/* REQUIRED: hidden dialog title */}
         <VisuallyHidden>
           <DialogTitle>{product.name} Assistant</DialogTitle>
         </VisuallyHidden>
 
-        {/* HEADER */}
         <SheetHeader className="p-4 border-b bg-slate-50 flex-none">
           <div className="flex items-center justify-between w-full">
             <SheetTitle className="flex items-center gap-2">
@@ -177,8 +176,9 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
           </div>
         </SheetHeader>
 
-        {/* CHAT AREA */}
-        <div className="flex-1 overflow-y-auto p-4 bg-white space-y-4">
+        {/* ★ Responsive scroll area */}
+        <div className="flex-1 overflow-y-auto p-4 bg-white space-y-4 min-h-0 max-h-full">
+
           <div className="flex gap-3 bg-slate-100 p-3 rounded-lg w-[85%]">
             <Bot className="w-5 h-5 mt-1 text-slate-500 flex-shrink-0" />
             <p className="text-sm text-slate-700">
@@ -195,7 +195,7 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
                 <Bot className="w-5 h-5 mt-1 text-slate-500 flex-shrink-0" />
               )}
               <div
-                className={`p-3 rounded-lg text-sm max-w-[85%] ${
+                className={`p-3 rounded-lg text-sm max-w-[85%] break-words overflow-hidden ${
                   msg.role === "user"
                     ? "bg-slate-900 text-white"
                     : "bg-slate-100 text-slate-800"
@@ -216,8 +216,8 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
           <div ref={bottomRef} className="h-1" />
         </div>
 
-        {/* FOOTER */}
-        <div className="p-4 border-t bg-slate-50 flex-none mt-auto">
+        {/* ★ Footer sticks on bottom of screen */}
+        <div className="p-4 border-t bg-slate-50 flex-none mt-auto sticky bottom-0 left-0 right-0 z-[60]">
           {isListening && (
             <div className="mb-2 text-xs text-red-500 flex items-center justify-center animate-pulse font-medium">
               Listening... Speak now
@@ -229,11 +229,10 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
               e.preventDefault();
               handleSend();
             }}
-            className="flex gap-2"
+            className="flex gap-2 w-full items-center"
           >
             <Button
               type="button"
-              
               variant={isListening ? "destructive" : "outline"}
               size="icon"
               onClick={toggleListening}
@@ -242,12 +241,13 @@ export function ChatSheet({ product, trigger }: ChatSheetProps) {
               {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}
             </Button>
 
+            {/* ★ Input responsive fix */}
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder={isListening ? "Listening..." : "Type or speak..."}
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 min-w-0 text-sm py-2"
             />
 
             <Button type="submit" className="cursor-pointer" disabled={isLoading || !input.trim()}>
