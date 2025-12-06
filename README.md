@@ -1,9 +1,8 @@
 live link for the deployed website:-
 https://click-pe-assignment.vercel.app
-Loan Picks Dashboard (Frontend Intern Mission)
- Setup Instructions
 
-Follow these steps to get the project running locally.
+Loan Picks Dashboard Setup Instruction:-
+ Steps:-
 
 1. Clone & Install
 
@@ -128,7 +127,7 @@ Injects this data directly into the System Prompt.
 We use a "Role-Based" prompting strategy with explicit constraints:
 
 "You are a helpful financial assistant. You are answering questions about a specific loan product.
-PRODUCT DETAILS: [JSON Dump of Database Row]
+PRODUCT DETAILS: 
 INSTRUCTIONS:
 
 Answer the user's question using ONLY the above data.
